@@ -1,12 +1,14 @@
 import React from "react";
 import "./App.css";
-import Loading from "./components/core/Loading";
+import { Router } from "@reach/router";
+
+import Login from "./pages/Login";
 
 function App() {
   return (
-    <div className="App">
-      <Loading />
-    </div>
+    <Router>
+      <Login path="/" />
+    </Router>
   );
 }
 
