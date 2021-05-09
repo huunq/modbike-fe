@@ -1,7 +1,7 @@
-import { createContext } from "react";
+// import { createContext } from "react";
 
-import { AuthenticationStore } from "./AuthenticationStore";
+// import { AuthenticationStore } from "./AuthenticationStore";
 
-export const storesContext = createContext({
-  authenticationStore: new AuthenticationStore(),
-});
+// export const storesContext = createContext({
+//   authenticationStore: new AuthenticationStore(),
+// });

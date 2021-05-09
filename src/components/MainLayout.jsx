@@ -1,11 +1,11 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import { storesContext } from "../context";
-import Cookies from "js-cookie";
+// import { storesContext } from "../context";
+// import Cookies from "js-cookie";
 
-import Sidebar from "./Sidebar";
-import Loading from "./core/Loading";
-import { navigate } from "@reach/router";
+// import Sidebar from "./Sidebar";
+// import Loading from "./core/Loading";
+// import { navigate } from "@reach/router";
 
 export default function MainLayout(props) {
   const { component: Child } = props;
@@ -69,10 +69,10 @@ export default function MainLayout(props) {
       </Helmet>
 
       <div className="flex flex-1 overflow-auto">
-        <Sidebar
+        {/* <Sidebar
           currentTab={props.currentTab}
           currentSubTab={props.currentSubTab}
-        />
+        /> */}
         <div className="flex flex-1">
           <Child {...props} />
         </div>

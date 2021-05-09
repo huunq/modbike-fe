@@ -4,62 +4,63 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 // import BtnRigis from "../components/core/BtnBack";
 import { navigate } from "@reach/router";
 import { Helmet } from "react-helmet";
+import Button from "../components/core/Button";
 // import Cookies from "js-cookie";
 // import { apiFetchUserByUserId } from "../api/users";
 // import Loading from "../components/core/Loading";
 // import { storesContext } from "../context";
 
 export default function Login() {
-//   const { authenticationStore } = useContext(storesContext);
+  //   const { authenticationStore } = useContext(storesContext);
 
-//   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-//   const [isNotSigned, setIsNotSigned] = useState(false);
+  //   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+  //   const [isNotSigned, setIsNotSigned] = useState(false);
 
-//   function onAuthen() {
-//     setIsCheckingAuth(false);
-//     setIsNotSigned(false);
-//   }
+  //   function onAuthen() {
+  //     setIsCheckingAuth(false);
+  //     setIsNotSigned(false);
+  //   }
 
-//   const checkAuth = useCallback(async () => {
-//     try {
-//       if (Cookies.get(process.env.REACT_APP_ACCESS_TOKEN_NAME)) {
-//         await authenticationStore.me();
-//         if (authenticationStore.currentUser) {
-//           const usr = await apiFetchUserByUserId(
-//             authenticationStore.currentUserId
-//           );
-//           if (usr.data.role_id !== "3") {
-//             navigate("/admin");
-//           } else {
-//             if (!usr.data.is_member) {
-//               navigate("/wait");
-//             } else {
-//               navigate("/home");
-//             }
-//           }
-//           onAuthen();
+  //   const checkAuth = useCallback(async () => {
+  //     try {
+  //       if (Cookies.get(process.env.REACT_APP_ACCESS_TOKEN_NAME)) {
+  //         await authenticationStore.me();
+  //         if (authenticationStore.currentUser) {
+  //           const usr = await apiFetchUserByUserId(
+  //             authenticationStore.currentUserId
+  //           );
+  //           if (usr.data.role_id !== "3") {
+  //             navigate("/admin");
+  //           } else {
+  //             if (!usr.data.is_member) {
+  //               navigate("/wait");
+  //             } else {
+  //               navigate("/home");
+  //             }
+  //           }
+  //           onAuthen();
 
-//           setIsCheckingAuth(false);
-//           return;
-//         }
-//       }
+  //           setIsCheckingAuth(false);
+  //           return;
+  //         }
+  //       }
 
-//       setIsNotSigned(true);
-//       setIsCheckingAuth(false);
-//     } catch (error) {
-//       console.error(error);
-//       setIsNotSigned(true);
-//       setIsCheckingAuth(false);
-//     }
-//   }, [authenticationStore]);
+  //       setIsNotSigned(true);
+  //       setIsCheckingAuth(false);
+  //     } catch (error) {
+  //       console.error(error);
+  //       setIsNotSigned(true);
+  //       setIsCheckingAuth(false);
+  //     }
+  //   }, [authenticationStore]);
 
-//   useEffect(() => {
-//     checkAuth();
-//   }, [checkAuth]);
+  //   useEffect(() => {
+  //     checkAuth();
+  //   }, [checkAuth]);
 
-//   if (isCheckingAuth) {
-//     return <Loading />;
-//   }
+  //   if (isCheckingAuth) {
+  //     return <Loading />;
+  //   }
   return (
     <div className="flex flex-col h-screen">
       <Helmet>
@@ -77,7 +78,7 @@ export default function Login() {
         <div className="w-full lg:w-1/3 px-2">
           {/* <Logo /> */}
           <h1>HELLO</h1>
-          <button
+          <Button
             text="Login via SSO"
             onClick={() =>
               navigate(
@@ -85,7 +86,7 @@ export default function Login() {
               )
             }
           />
-          <button
+          <Button
             text="Register via SSO"
             onClick={() =>
               navigate(
