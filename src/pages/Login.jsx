@@ -5,6 +5,8 @@ import React, { useCallback, useContext, useEffect, useState } from "react";
 import { navigate } from "@reach/router";
 import { Helmet } from "react-helmet";
 import Button from "../components/core/Button";
+import Logo from "../components/core/Logo";
+import { apiFecthLogin } from "../api/login";
 // import Cookies from "js-cookie";
 // import { apiFetchUserByUserId } from "../api/users";
 // import Loading from "../components/core/Loading";
@@ -15,11 +17,26 @@ export default function Login() {
 
   //   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
   //   const [isNotSigned, setIsNotSigned] = useState(false);
-
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   //   function onAuthen() {
   //     setIsCheckingAuth(false);
   //     setIsNotSigned(false);
   //   }
+
+  const handleLogin = async () => {
+    const data = {
+      username: username,
+      password: password,
+    };
+
+    try {
+      const users = await apiFecthLogin(data);
+      console.log(users);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   //   const checkAuth = useCallback(async () => {
   //     try {
@@ -67,7 +84,7 @@ export default function Login() {
         <title>MODBIKE</title>
       </Helmet>
 
-      <div className="flex flex-1 overflow-auto">
+      <div className="flex flex-1 overflow-auto align-middle min-h-screen">
         <div
           className="w-0 lg:w-2/3"
           style={{
@@ -75,25 +92,26 @@ export default function Login() {
             backgroundSize: "cover",
           }}
         ></div>
-        <div className="w-full lg:w-1/3 px-2">
-          {/* <Logo /> */}
-          <h1>HELLO</h1>
-          <Button
-            text="Login via SSO"
-            onClick={() =>
-              navigate(
-                `https://std-sso-fe.sit.kmutt.ac.th/login?response_type=code&client_id=u1UOLdKI&redirect_uri=http://ksf.sit.kmutt.ac.th/checking&state=ksf_login`
-              )
-            }
-          />
-          <Button
-            text="Register via SSO"
-            onClick={() =>
-              navigate(
-                `https://std-sso-fe.sit.kmutt.ac.th/login?response_type=code&client_id=u1UOLdKI&redirect_uri=http://ksf.sit.kmutt.ac.th/checking&state=ksf_register`
-              )
-            }
-          />
+        <div className="w-full lg:w-1/3 my-auto">
+          <Logo />
+          <h3 className="text-center mod-bike-home">MODBIKE</h3>
+          <div className="my-2">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Username"
+              onChange={(e) => setUsername(e.target.value)}
+            />
+          </div>
+          <div className="my-2">
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+            />
+          </div>
+          <Button text="Login" onClick={() => handleLogin()} />
         </div>
       </div>
     </div>

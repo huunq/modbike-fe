@@ -1,9 +1,9 @@
-import { appAxios } from "../libs/axios";
+import { appAxios } from "../lib/axios";
 
 export const apiFecthLogin = (data) => {
   return appAxios().post(`${process.env.REACT_APP_BACKEND}/login`, data);
 };
 
 export const apiFetchMe = () => {
-  return appAxios().get(`${process.env.REACT_APP_BACKEND}/me`)
-}
+  return appAxios().get(`${process.env.REACT_APP_BACKEND}/me`);
+};
