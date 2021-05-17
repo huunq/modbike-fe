@@ -1,6 +1,6 @@
 import React from "react";
 import { Helmet } from "react-helmet";
-import Headers from "./core/Headers";
+import HeadersProfile from "./core/HeadersProfile";
 // import { storesContext } from "../context";
 // import Cookies from "js-cookie";
 
@@ -8,7 +8,7 @@ import Headers from "./core/Headers";
 // import Loading from "./core/Loading";
 // import { navigate } from "@reach/router";
 
-export default function UserMainLayout(props) {
+export default function ProfileMainLayout(props) {
   const { component: Child } = props;
 
   //   const { authenticationStore } = useContext(storesContext);
@@ -66,14 +66,14 @@ export default function UserMainLayout(props) {
       <Helmet>
         <title>MODBIKE</title>
       </Helmet>
-      <Headers />
+      <HeadersProfile />
 
-      <div className="max-w-screen-xl mx-auto min-h-screen">
+      <div className="max-w-screen-xl min-h-screen">
         {/* <Sidebar
             currentTab={props.currentTab}
             currentSubTab={props.currentSubTab}
           /> */}
-        <div className="flex flex-1">
+        <div className="flex">
           <Child {...props} />
         </div>
       </div>
