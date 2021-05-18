@@ -73,11 +73,15 @@
 .buttonSecondary {
   background-color: transparent !important;
   color: #f57d3e !important;
-  border: 1px solid #F57D3E;
+  border: 1px solid #f57d3e;
   border-radius: 5px !important;
 }
 
 .bikeCard {
-  border: 1px solid #9D9D9D;
+  border: 1px solid #9d9d9d;
   border-radius: 5px !important;
+}
+
+.text-primary-sidebar {
+  color: #000 !important;
 }

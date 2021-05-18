@@ -24,27 +24,30 @@ const Card = (data) => (
 
 export default function History() {
   // const { authenticationStore } = useContext(storesContext);
-//   const [isFetch, setIsFetch] = useState(false);
-//   const [hist, setHist] = useSate();
-//   const fetchData = useCallback(async () => {
-//     setIsFetch(true);
-//     const data = await apiFetchAllHistory(authenticationStore.currentUserId);
-//     setHist(data);
+  //   const [isFetch, setIsFetch] = useState(false);
+  const [hist, setHist] = useState({
+    bike_name: "test",
+    start_date: "1/1/2021",
+  });
+  //   const fetchData = useCallback(async () => {
+  //     setIsFetch(true);
+  //     const data = await apiFetchAllHistory(authenticationStore.currentUserId);
+  //     setHist(data);
 
-//     setIsFetch(false);
-//   }, [authenticationStore]);
+  //     setIsFetch(false);
+  //   }, [authenticationStore]);
 
-//   useEffect(() => {
-//     fetchData();
-//   }, [fetchData]);
+  //   useEffect(() => {
+  //     fetchData();
+  //   }, [fetchData]);
 
-//   if (isFetch) {
-//     return (
-//       <div className="flex flex-col flex-1 min-h-screen">
-//         <Loading />
-//       </div>
-//     );
-//   }
+  //   if (isFetch) {
+  //     return (
+  //       <div className="flex flex-col flex-1 min-h-screen">
+  //         <Loading />
+  //       </div>
+  //     );
+  //   }
 
   return <>{_.map(hist, (data, key) => Card(data))}</>;
 }

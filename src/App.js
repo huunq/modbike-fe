@@ -9,6 +9,9 @@ import Home from "./pages/users/Home";
 import Borrow from "./pages/users/Borrow";
 import Profile from "./pages/users/Profile";
 import History from "./pages/users/History";
+import MainLayout from "./components/MainLayout";
+import Users from "./pages/admin/Users";
+import Bikes from "./pages/admin/Bikes";
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
 
       <ProfileMainLayout component={Profile} path="/profile" />
       <ProfileMainLayout component={History} path="/history" />
+
+      <MainLayout component={Users} path="/admin/users" />
+      <MainLayout component={Bikes} path="/admin/bikes" />
     </Router>
   );
 }
