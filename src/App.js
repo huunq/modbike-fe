@@ -12,11 +12,13 @@ import History from "./pages/users/History";
 import MainLayout from "./components/MainLayout";
 import Users from "./pages/admin/Users";
 import Bikes from "./pages/admin/Bikes";
+import Register from "./pages/Register";
 
 function App() {
   return (
     <Router>
       <Login path="/" />
+      <Register path="/register"/>
       <UserMainLayout component={Home} path="/home" />
       <UserMainLayout component={Borrow} path="/borrow" />
 

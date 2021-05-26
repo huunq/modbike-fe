@@ -112,6 +112,9 @@ export default function Login() {
             />
           </div>
           <Button text="Login" onClick={() => handleLogin()} />
+          <span>
+            Login first time ? <a href="/register">Register</a>
+          </span>
         </div>
       </div>
     </div>
