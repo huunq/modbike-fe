@@ -84,7 +84,7 @@ export default function Login() {
         <title>MODBIKE</title>
       </Helmet>
 
-      <div className="flex flex-1 overflow-auto align-middle min-h-screen">
+      <div className="flex flex-1 overflow-auto align-middle min-h-screen px-5">
         <div
           className="w-0 lg:w-2/3"
           style={{
