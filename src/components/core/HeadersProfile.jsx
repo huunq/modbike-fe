@@ -4,36 +4,31 @@ import { navigate } from "@reach/router";
 import { AccountCircle } from "@material-ui/icons";
 
 import Loading from "./Loading";
+import Cookies from "js-cookie";
+import { apiFetchMe } from "../../api/login";
 
 export default function HeadersProfile() {
-  //   const [isFetch, setIsFetch] = useState(false);
-  const [user, setUser] = useState({
-    f_name: "Ryomen",
-    l_name: "Sukuna",
-    student_id: 60130500106,
-    faculty: "School of Information Technology",
-    is_canuse: true,
-  });
-  //   // const { authenticationStore } = useContext(storesContext);
+  const [isFetch, setIsFetch] = useState(false);
+  const [user, setUser] = useState();
 
-  //   const fetchData = useCallback(async () => {
-  //     setIsFetch(true);
-  //     const data = await apiFetchUser(authenticationStore.currentUserId);
-  //     setUser(data);
-  //     setIsFetch(false);
-  //   }, []);
+  const fetchData = useCallback(async () => {
+    setIsFetch(true);
+    const { data } = await apiFetchMe(Cookies.get("auth"));
+    setUser(data);
+    setIsFetch(false);
+  }, []);
 
-  //   useEffect(() => {
-  //     fetchData();
-  //   }, [fetchData]);
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
 
-  //   if (isFetch) {
-  //     return (
-  //       <div className="flex flex-col flex-1 min-h-screen">
-  //         <Loading />
-  //       </div>
-  //     );
-  //   }
+  if (isFetch) {
+    return (
+      <div className="flex flex-col flex-1 min-h-screen">
+        <Loading />
+      </div>
+    );
+  }
 
   return (
     <div className="Profile-header min-w-full py-2">
@@ -44,11 +39,13 @@ export default function HeadersProfile() {
         />
       </div>
       <div className="w-2/3 flex flex-col">
-        <p className="font-head w-full">{user.f_name + "  " + user.l_name}</p>
-        <p className="font-normal w-full">{user.student_id}</p>
-        <p className="font-small w-full">{user.faculty}</p>
+        <p className="font-head w-full">
+          {user && user.f_name + "  " + user.l_name}
+        </p>
+        <p className="font-normal w-full">{user && user.student_id}</p>
+        <p className="font-small w-full">{user && user.faculty}</p>
         <p className="font-small w-full">
-          Staus: {user.is_canuse ? "Normal" : "Ban"}
+          Staus: {user && (user.is_canuse ? "Normal" : "Ban")}
         </p>
       </div>
     </div>

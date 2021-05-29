@@ -2,10 +2,14 @@ import React from "react";
 import ArrowForwardIosIcon from "@material-ui/icons/ArrowForwardIos";
 import { navigate } from "@reach/router";
 import Button from "../../components/core/Button";
+import Cookies from "js-cookie";
 
 export default function Profile() {
   const handleLogout = () => {
-    console.log("logout");
+    Cookies.remove("auth");
+    setTimeout(() => {
+      navigate("/");
+    }, 2000);
   };
   return (
     <>
@@ -18,7 +22,9 @@ export default function Profile() {
           <ArrowForwardIosIcon style={{ color: "#9d9d9d9e" }} />
         </div>
         <div className="mt-10 mb-0 mx-3">
-          <button type="button" className="btn-block buttonSecondary py-2">Return Bike</button>
+          <button type="button" className="btn-block buttonSecondary py-2">
+            Return Bike
+          </button>
           <Button text="Log Out" onClick={() => handleLogout()} />
         </div>
       </div>

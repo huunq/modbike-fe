@@ -1,83 +1,35 @@
-import React, { useCallback, useContext, useEffect, useState } from "react";
-// import Logo from "../components/core/Logo";
-// import BtnNext from "../components/core/BtnNext";
-// import BtnRigis from "../components/core/BtnBack";
+import React, { useState } from "react";
+
 import { navigate } from "@reach/router";
 import { Helmet } from "react-helmet";
 import Button from "../components/core/Button";
 import Logo from "../components/core/Logo";
 import { apiFecthLogin } from "../api/login";
-// import Cookies from "js-cookie";
-// import { apiFetchUserByUserId } from "../api/users";
-// import Loading from "../components/core/Loading";
-// import { storesContext } from "../context";
+import Cookies from "js-cookie";
 
 export default function Login() {
-  //   const { authenticationStore } = useContext(storesContext);
-
-  //   const [isCheckingAuth, setIsCheckingAuth] = useState(true);
-  //   const [isNotSigned, setIsNotSigned] = useState(false);
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  //   function onAuthen() {
-  //     setIsCheckingAuth(false);
-  //     setIsNotSigned(false);
-  //   }
+  const [errorText, setErrorText] = useState("");
 
   const handleLogin = async () => {
-    const data = {
+    const body = {
       username: username,
       password: password,
     };
 
     try {
-      const users = await apiFecthLogin(data);
-      console.log(users);
+      const { data } = await apiFecthLogin(body);
+      if (data.message === "complete") {
+        Cookies.set("auth", data.user.username);
+        navigate("/home");
+      }
     } catch (e) {
       console.log(e);
+      setErrorText("Username or password wrong");
     }
   };
 
-  //   const checkAuth = useCallback(async () => {
-  //     try {
-  //       if (Cookies.get(process.env.REACT_APP_ACCESS_TOKEN_NAME)) {
-  //         await authenticationStore.me();
-  //         if (authenticationStore.currentUser) {
-  //           const usr = await apiFetchUserByUserId(
-  //             authenticationStore.currentUserId
-  //           );
-  //           if (usr.data.role_id !== "3") {
-  //             navigate("/admin");
-  //           } else {
-  //             if (!usr.data.is_member) {
-  //               navigate("/wait");
-  //             } else {
-  //               navigate("/home");
-  //             }
-  //           }
-  //           onAuthen();
-
-  //           setIsCheckingAuth(false);
-  //           return;
-  //         }
-  //       }
-
-  //       setIsNotSigned(true);
-  //       setIsCheckingAuth(false);
-  //     } catch (error) {
-  //       console.error(error);
-  //       setIsNotSigned(true);
-  //       setIsCheckingAuth(false);
-  //     }
-  //   }, [authenticationStore]);
-
-  //   useEffect(() => {
-  //     checkAuth();
-  //   }, [checkAuth]);
-
-  //   if (isCheckingAuth) {
-  //     return <Loading />;
-  //   }
   return (
     <div className="flex flex-col h-screen">
       <Helmet>
@@ -115,6 +67,7 @@ export default function Login() {
           <span>
             Login first time ? <a href="/register">Register</a>
           </span>
+          <p className="text-red-600 text-center">{errorText}</p>
         </div>
       </div>
     </div>
