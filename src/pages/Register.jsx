@@ -1,6 +1,9 @@
+import { navigate } from "@reach/router";
 import React, { useState } from "react";
 import { Helmet } from "react-helmet";
+import { apiRegister } from "../api/login";
 import Button from "../components/core/Button";
+import CreateSuccessModal from "../components/core/CreateSuccessModal";
 import Input from "../components/core/Input";
 
 export default function Register() {
@@ -14,12 +17,14 @@ export default function Register() {
   const [mobileNo, setMobileNo] = useState("");
   const [email, setEmail] = useState("");
   const [other, setOther] = useState("");
+  const [success, setSuccess] = useState(false);
 
-  const handleRegister = () => {
+  const handleRegister = async () => {
     if (password === c_password) {
       const data = {
         username: username,
         password: password,
+        student_id: username,
         f_name: fname,
         l_name: lname,
         faculty: faculty,
@@ -29,10 +34,22 @@ export default function Register() {
         other_contact: other,
       };
       console.log(data);
+      try {
+        const result = await apiRegister(data);
+        if (result.status === 200) {
+          setSuccess(true);
+          setTimeout(() => {
+            navigate("/");
+          }, 2000);
+        }
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
   return (
     <div className="flex flex-col h-screen">
+      <CreateSuccessModal open={success} />
       <Helmet>
         <title>MODBIKE</title>
       </Helmet>

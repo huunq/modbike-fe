@@ -22,6 +22,8 @@ export default function Input(props) {
         data-cy={props["data-cy"]}
         placeholder={props.placeholder}
         disabled={props.disabled}
+        type={props.type}
+        onChange={props.onChange}
       />
       {typeof props.error === "string" && (
         <p className="text-red-500 text-xs">{props.error}</p>

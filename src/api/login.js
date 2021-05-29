@@ -7,3 +7,7 @@ export const apiFecthLogin = (data) => {
 export const apiFetchMe = (id) => {
   return appAxios().get(`${process.env.REACT_APP_BACKEND}/${id}`);
 };
+
+export const apiRegister = (data) => {
+  return appAxios().post(`${process.env.REACT_APP_BACKEND}/register`, data);
+};
