@@ -1,28 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import EditHeader from "../../components/core/EditHeader";
 import { IconButton, Tooltip } from "@material-ui/core";
 import { CloseRounded } from "@material-ui/icons";
 import DataTable from "../../components/core/DataTable";
+import { apiFetchAllUser } from "../../api/users";
+import Loading from "../../components/core/Loading";
 
 export default function Users() {
   const [users, setUsers] = useState([]);
   const [prefixNameRowPerPage, setPrefixNameRowPerPage] = useState(10);
 
-  const handleRemove = (id) => {
-    // setRemoveId(id);
-    // setIsOpenConfirm(true);
-    console.log(id);
-  };
+  const [isFetch, setIsFetch] = useState(false);
+
+  const fetchData = useCallback(async () => {
+    setIsFetch(true);
+    const { data } = await apiFetchAllUser();
+    setUsers(data);
+    setIsFetch(false);
+  }, []);
+
+  useEffect(() => {
+    fetchData();
+  }, [fetchData]);
+
+  if (isFetch) {
+    return (
+      <div className="flex flex-col flex-1 min-h-screen">
+        <Loading />
+      </div>
+    );
+  }
 
   const columns = [
     {
       Header: "ชื่อ",
-      accessor: "fname",
+      accessor: "f_name",
       Cell: ({ cell: { value } }) => <p className="font-sarabun">{value}</p>,
     },
     {
       Header: "นามสกุล",
-      accessor: "lname",
+      accessor: "l_name",
       Cell: ({ cell: { value } }) => <p className="font-sarabun">{value}</p>,
     },
     {
@@ -35,17 +52,6 @@ export default function Users() {
       accessor: "faculty",
       Cell: ({ cell: { value } }) => <p className="font-sarabun">{value}</p>,
     },
-    // {
-    //   Header: "ลบข้อมูล",
-    //   accessor: "profile_id",
-    //   Cell: ({ cell: { value } }) => (
-    //     <Tooltip title="ลบ">
-    //       <IconButton onClick={() => handleRemove(value)}>
-    //         <CloseRounded />
-    //       </IconButton>
-    //     </Tooltip>
-    //   ),
-    // },
   ];
 
   return (

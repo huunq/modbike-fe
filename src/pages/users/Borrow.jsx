@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { apiFetchBikeById } from "../../api/bikes";
+import { apiBikeBorrow, apiFetchBikeById } from "../../api/bikes";
 import Button from "../../components/core/Button";
 import QrReader from "react-qr-reader";
+import Bikes from "../admin/Bikes";
+import { navigate } from "@reach/router";
+import dayjs from "dayjs";
+import Cookies from "js-cookie";
 
 export default function Borrow() {
   const [bikeId, setBikeId] = useState("");
@@ -9,7 +13,8 @@ export default function Borrow() {
 
   const handleSubmit = async () => {
     try {
-      const data = await apiFetchBikeById(bikeId);
+      const { data } = await apiFetchBikeById(bikeId);
+      console.log(data);
       setBike(data);
     } catch (e) {
       console.error(e);
@@ -23,6 +28,30 @@ export default function Borrow() {
   };
   const handleError = (err) => {
     console.error(err);
+  };
+
+  const handleReq = async () => {
+    const time = dayjs().format();
+    const data = {
+      bike_id: bikeId,
+      student_id: Cookies.get("auth"),
+      start_date: time,
+      finish_date: "",
+      return_ontime: false,
+    };
+    try {
+      const result = await apiBikeBorrow(bikeId, data);
+      if (result.status === 200) {
+        navigate("/home");
+      }
+    } catch (e) {
+      console.error(e);
+    }
+  };
+
+  const handleZero = () => {
+    setBikeId();
+    setBike();
   };
 
   return (
@@ -62,7 +91,11 @@ export default function Borrow() {
             </div>
           ) : (
             <div>
-              <h2>Bike Detail</h2>
+              <h2>Bike ID: {bike.bike_id}</h2>
+              <h3>ที่อยู่: {bike.branch_name}</h3>
+              <h5>ประเภท: {bike.bike_type_name}</h5>
+              <Button text="ยืนยันการยืม" onClick={() => handleReq()} />
+              <Button text="ย้อนกลับ" onClick={() => handleZero()} />
             </div>
           )}
           {/* <div className="mb-5">

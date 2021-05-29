@@ -1,15 +1,18 @@
 import { appAxios } from "../lib/axios";
 
 export const apiFetchBikeById = (data) => {
-  return appAxios().get(`${process.env.REACT_APP_BACKEND}/bike`, data);
+  return appAxios().get(`${process.env.REACT_APP_BACKEND}/bike/${data}`);
 };
 
 export const apiFetchBikes = () => {
   return appAxios().get(`${process.env.REACT_APP_BACKEND}/bikes`);
 };
 
-export const apiBikeBorrow = (data) => {
-  return appAxios().put(`${process.env.REACT_APP_BACKEND}/bikes/borrow`, data);
+export const apiBikeBorrow = (data, body) => {
+  return appAxios().put(
+    `${process.env.REACT_APP_BACKEND}/bikes/borrow/${data}`,
+    body
+  );
 };
 
 export const apiBikeReturn = (data) => {
