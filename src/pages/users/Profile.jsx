@@ -22,9 +22,6 @@ export default function Profile() {
           <ArrowForwardIosIcon style={{ color: "#9d9d9d9e" }} />
         </div>
         <div className="mt-10 mb-0 mx-3">
-          <button type="button" className="btn-block buttonSecondary py-2">
-            Return Bike
-          </button>
           <Button text="Log Out" onClick={() => handleLogout()} />
         </div>
       </div>
