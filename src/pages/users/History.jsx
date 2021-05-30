@@ -33,7 +33,7 @@ export default function History() {
 
   const handleReturn = async (id) => {
     const body = {
-      finish_date: dayjs().format(),
+      finish_date: dayjs().format("YYYY-MM-DD H:mm:ss"),
       return_ontime: true,
     };
 

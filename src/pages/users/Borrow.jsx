@@ -31,11 +31,11 @@ export default function Borrow() {
   };
 
   const handleReq = async () => {
-    const time = dayjs().format();
+    const time = dayjs()
     const data = {
       bike_id: bikeId,
       student_id: Cookies.get("auth"),
-      start_date: time,
+      start_date: dayjs().format("YYYY-MM-DD H:mm:ss"),
       finish_date: null,
       return_ontime: false,
     };
