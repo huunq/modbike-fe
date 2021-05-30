@@ -91,7 +91,7 @@ export default function Borrow() {
             </div>
           ) : (
             <div>
-              <h2>Bike ID: {bike.bike_id}</h2>
+              <h2>Bike ID: {bike.bike_name}</h2>
               <h3>ที่อยู่: {bike.branch_name}</h3>
               <h5>ประเภท: {bike.bike_type_name}</h5>
               <Button text="ยืนยันการยืม" onClick={() => handleReq()} />
