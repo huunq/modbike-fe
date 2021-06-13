@@ -1,5 +1,5 @@
 import React from "react";
-import PrimaryButton from "../core/PrimaryButton";
+import Button from "./Button";
 
 export default function CreateHeader(props) {
   return (
@@ -8,13 +8,13 @@ export default function CreateHeader(props) {
         <div className="flex justify-between">
           <p className="text-lg mt-2">รายการ{props.title}</p>
           <div className="text-right">
-            <PrimaryButton
+            <Button
               className="px-10"
               type="submit"
               onClick={props.onClick}
             >
               สร้าง
-            </PrimaryButton>
+            </Button>
           </div>
         </div>
       </div>
