@@ -29,3 +29,7 @@ export const apiBikeEditById = (data, id) => {
 export const apiBikeDeleteById = (id) => {
   return appAxios().put(`${process.env.REACT_APP_BACKEND}/bikes/${id}/remove`);
 };
+
+export const apiCreateBike = (data) => {
+  return appAxios().post(`${process.env.REACT_APP_BACKEND}/bikes/create`,data)
+}
