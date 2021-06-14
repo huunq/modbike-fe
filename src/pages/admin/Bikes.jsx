@@ -54,7 +54,7 @@ export default function Bikes() {
       accessor: "bike_name",
       Cell: ({ cell: { value } }) => (
         <Tooltip title="แก้ไข">
-          <IconButton onClick={() => navigate(`/admin/machines/${value}/edit`)}>
+          <IconButton onClick={() => navigate(`/admin/bikes/${value}/edit`)}>
             <CreateRounded />
           </IconButton>
         </Tooltip>

@@ -30,7 +30,7 @@ function App() {
       <MainLayout component={Users} path="/admin/users" />
       <MainLayout component={Bikes} path="/admin/bikes" />
       <MainLayout component={BikeCreate} path="/admin/bikes/create" />
-      <MainLayout component={BikeEdit} path="/admin/bikes/edit" />
+      <MainLayout component={BikeEdit} path="/admin/bikes/:id/edit" />
     </Router>
   );
 }
