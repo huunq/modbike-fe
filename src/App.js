@@ -13,12 +13,14 @@ import MainLayout from "./components/MainLayout";
 import Users from "./pages/admin/Users";
 import Bikes from "./pages/admin/Bikes";
 import Register from "./pages/Register";
+import BikeCreate from "./pages/admin/BikeCreate";
+import BikeEdit from "./pages/admin/BikeEdit";
 
 function App() {
   return (
     <Router>
       <Login path="/" />
-      <Register path="/register"/>
+      <Register path="/register" />
       <UserMainLayout component={Home} path="/home" />
       <UserMainLayout component={Borrow} path="/borrow" />
 
@@ -27,6 +29,8 @@ function App() {
 
       <MainLayout component={Users} path="/admin/users" />
       <MainLayout component={Bikes} path="/admin/bikes" />
+      <MainLayout component={BikeCreate} path="/admin/bikes/create" />
+      <MainLayout component={BikeEdit} path="/admin/bikes/edit" />
     </Router>
   );
 }

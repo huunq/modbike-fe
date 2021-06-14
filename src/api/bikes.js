@@ -31,5 +31,13 @@ export const apiBikeDeleteById = (id) => {
 };
 
 export const apiCreateBike = (data) => {
-  return appAxios().post(`${process.env.REACT_APP_BACKEND}/bikes/create`,data)
-}
+  return appAxios().post(`${process.env.REACT_APP_BACKEND}/bikes/create`, data);
+};
+
+export const apiBikeTypes = () => {
+  return appAxios().post(`${process.env.REACT_APP_BACKEND}/bikes/types`);
+};
+
+export const apiBranch = () => {
+  return appAxios().post(`${process.env.REACT_APP_BACKEND}/bikes/branch`);
+};
