@@ -51,7 +51,7 @@ export default function Bikes() {
     },
     {
       Header: "Edit",
-      accessor: "bike_name",
+      accessor: "bike_id",
       Cell: ({ cell: { value } }) => (
         <Tooltip title="แก้ไข">
           <IconButton onClick={() => navigate(`/admin/bikes/${value}/edit`)}>

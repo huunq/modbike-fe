@@ -18,6 +18,11 @@ export default function BikeCreate() {
   const [bikeTypes, setBikeTypes] = useState();
   const [branchId, setBranchId] = useState();
 
+
+  const [b_name, setB_name] =useState("")
+  const [b_detail, setB_detail] =useState("")
+  const [b_eq, setB_eq] =useState("")
+
   const [typeId, setTypeId] = useState();
   const [bID, setBID] = useState();
 
@@ -66,12 +71,12 @@ export default function BikeCreate() {
     );
   }
 
-  const handleSubmit = async (data) => {
+  const handleSubmit = async () => {
     const temp = {
-      bike_name: data.bike_name,
+      bike_name: b_name,
       bike_type_id: typeId,
-      detail: data.detail,
-      bike_eq: data.bike_eq,
+      detail: b_detail,
+      bike_eq: b_eq,
       branch_id: bID,
       bike_pic: "",
     };
@@ -95,54 +100,50 @@ export default function BikeCreate() {
     setBID(data);
   };
 
-  return (
-    <div className="flex flex-col flex-1">
-      <ErrorModal
-        open={isOpenErrorModal}
-        onClose={() => setIsOpenErrorModal(false)}
-      />
-      <CreateSuccessModal
-        open={isOpenSuccessModal}
-        onClose={() => setIsOpenSuccessModal(false)}
-      />
-      <Formik initialValues={bike} onSubmit={handleSubmit}>
-        {(formikProps) => (
-          <>
-            <EditHeader title="สร้างเครื่องจักรยาน" />
-            <Form className="overflow-y-auto">
-              <div className="p-6 overflow-y-auto min-h-screen">
-                <Field name="bike_name">
-                  {({ field, meta }) => (
-                    <div>
-                      <Input
-                        placeholder="ชื่อเครื่องออกกำลังกาย"
-                        inputProps={{ ...field }}
-                      />
-                    </div>
-                  )}
-                </Field>
-                <Field name="detail">
-                  {({ field, meta }) => (
-                    <div>
-                      <Input
-                        placeholder="รายละเอียด"
-                        inputProps={{ ...field }}
-                      />
-                    </div>
-                  )}
-                </Field>
-                <Field name="bike_eq">
-                  {({ field, meta }) => (
-                    <div>
-                      <Input
-                        placeholder="เลขครุภัณฑ์"
-                        inputProps={{ ...field }}
-                      />
-                    </div>
-                  )}
-                </Field>
 
-                <div className="my-3">
+  const handleChange = (e) => {
+    switch (e.target.name) {
+      case "bike_name": setB_name(e.target.value) 
+      break;
+      case "bike_detail": setB_detail(e.target.value)
+      break;
+
+      case "bike_eq": setB_eq(e.target.value)
+        break;
+      default: console.log(e)
+        break;
+    }
+  }
+
+  return (
+   
+    <div className="flex flex-col flex-1">
+    <ErrorModal
+      open={isOpenErrorModal}
+      onClose={() => setIsOpenErrorModal(false)}
+    />
+    <CreateSuccessModal
+      open={isOpenSuccessModal}
+      onClose={() => setIsOpenSuccessModal(false)}
+    />
+    <EditHeader title="สร้างจักรยาน" />
+    <div className="w-full p-5">
+    <div className="my-2">
+        <p className="text-sm">ชื่อ</p>
+        <input value={b_name} className="form-control" name="bike_name" onChange={(e) => handleChange(e)}/>
+          </div>
+        <div className="my-2">
+        <p className="text-sm">รายละเอียด</p>
+        <input value={b_detail} className="form-control" name="bike_detail"  onChange={(e) => handleChange(e)}/>
+          </div>
+        <div className="my-2">
+        <p className="text-sm">เลขครุภัณฑ์</p>
+        <input value={b_eq} className="form-control" name="bike_eq"  onChange={(e) => handleChange(e)}/>
+          </div>
+        {bikeTypes && (
+<>
+          <div className="my-3">
+          <p className="text-sm">ประเภทจักรยาน</p>
                   <Select
                     value={bikeTypes.find(
                       (option) => option.value === option.value
@@ -153,6 +154,7 @@ export default function BikeCreate() {
                   />
                 </div>
                 <div className="my-3">
+                <p className="text-sm">สาขา</p>
                   <Select
                     value={branchId.find(
                       (option) => option.value === option.value
@@ -162,16 +164,21 @@ export default function BikeCreate() {
                     defaultValue={branchId[0]}
                   />
                 </div>
-                <div className="col-4 mx-auto">
-                  <button value="submit" className="buttonBack btn-block">
-                    สร้างจักรยาน
-                  </button>
-                </div>
-              </div>
-            </Form>
-          </>
-        )}
-      </Formik>
+                </>
+          )}
+        </div>
+    <div className="flex">
+    <div className="col-2 mx-auto">
+      <button value="submit" className="buttonLogin btn-block mr-2" onClick={() => handleSubmit()}>
+        แก้ไขจักรยาน
+      </button>
     </div>
+              <div  className="col-2 mx-auto">
+              <button className="buttonDelete btn-block" onClick={() => navigate('/admin/bikes')}>
+                  กลับ
+                </button>
+              </div>
+    </div>
+  </div>
   );
 }

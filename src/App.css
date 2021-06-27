@@ -41,8 +41,20 @@
   }
 }
 
+.createButton{
+  background-color: #f57d3e !important;
+  color: #fff !important;
+  border-radius: 5px !important;
+}
+
 .buttonLogin {
   background-color: #f57d3e !important;
+  color: #fff !important;
+  border-radius: 5px !important;
+}
+
+.buttonDelete {
+  background-color: red !important;
   color: #fff !important;
   border-radius: 5px !important;
 }

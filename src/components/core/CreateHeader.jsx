@@ -8,13 +8,13 @@ export default function CreateHeader(props) {
         <div className="flex justify-between">
           <p className="text-lg mt-2">รายการ{props.title}</p>
           <div className="text-right">
-            <Button
-              className="px-10"
+            <button
+              className="px-5 py-2 createButton"
               type="submit"
               onClick={props.onClick}
             >
               สร้าง
-            </Button>
+            </button>
           </div>
         </div>
       </div>

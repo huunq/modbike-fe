@@ -35,9 +35,9 @@ export const apiCreateBike = (data) => {
 };
 
 export const apiBikeTypes = () => {
-  return appAxios().post(`${process.env.REACT_APP_BACKEND}/bikes/types`);
+  return appAxios().get(`${process.env.REACT_APP_BACKEND}/bikes/types`);
 };
 
 export const apiBranch = () => {
-  return appAxios().post(`${process.env.REACT_APP_BACKEND}/bikes/branch`);
+  return appAxios().get(`${process.env.REACT_APP_BACKEND}/bikes/branch`);
 };
