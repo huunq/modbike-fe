@@ -29,12 +29,9 @@ export default function BikeEdit(props) {
   const [typeId, setTypeId] = useState();
   const [bID, setBID] = useState();
 
-
-  const [b_name, setB_name] =useState("")
-  const [b_detail, setB_detail] =useState("")
-  const [b_eq, setB_eq] =useState("")
-
-  
+  const [b_name, setB_name] = useState("");
+  const [b_detail, setB_detail] = useState("");
+  const [b_eq, setB_eq] = useState("");
 
   const fetchData = useCallback(async () => {
     setIsFetch(true);
@@ -73,9 +70,9 @@ export default function BikeEdit(props) {
       });
     });
     setBranchId(mb);
-    setB_name(data.bike_name)
-    setB_detail(data.detail)
-    setB_eq(data.bike_eq)
+    setB_name(data.bike_name);
+    setB_detail(data.detail);
+    setB_eq(data.bike_eq);
 
     setBike(temp);
     setIsFetch(false);
@@ -100,7 +97,7 @@ export default function BikeEdit(props) {
       detail: b_detail,
       bike_eq: b_eq,
       branch_id: bID,
-      bike_pic: data.bike_pic,
+      bike_pic: "",
     };
 
     try {
@@ -136,17 +133,21 @@ export default function BikeEdit(props) {
 
   const handleChange = (e) => {
     switch (e.target.name) {
-      case "bike_name": setB_name(e.target.value) 
-      break;
-      case "bike_detail": setB_detail(e.target.value)
-      break;
-
-      case "bike_eq": setB_eq(e.target.value)
+      case "bike_name":
+        setB_name(e.target.value);
         break;
-      default: console.log(e)
+      case "bike_detail":
+        setB_detail(e.target.value);
+        break;
+
+      case "bike_eq":
+        setB_eq(e.target.value);
+        break;
+      default:
+        console.log(e);
         break;
     }
-  }
+  };
 
   return (
     <div className="flex flex-col flex-1">
@@ -167,60 +168,79 @@ export default function BikeEdit(props) {
       <div className="w-full p-5">
         {bike && (
           <>
-        <div className="my-2">
-        <p className="text-sm">ชื่อ</p>
-        <input value={b_name} className="form-control" name="bike_name" onChange={(e) => handleChange(e)}/>
-          </div>
-        <div className="my-2">
-        <p className="text-sm">รายละเอียด</p>
-        <input value={b_detail} className="form-control" name="bike_detail"  onChange={(e) => handleChange(e)}/>
-          </div>
-        <div className="my-2">
-        <p className="text-sm">เลขครุภัณฑ์</p>
-        <input value={b_eq} className="form-control" name="bike_eq"  onChange={(e) => handleChange(e)}/>
-          </div>
-
+            <div className="my-2">
+              <p className="text-sm">ชื่อ</p>
+              <input
+                value={b_name}
+                className="form-control"
+                name="bike_name"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="my-2">
+              <p className="text-sm">รายละเอียด</p>
+              <input
+                value={b_detail}
+                className="form-control"
+                name="bike_detail"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
+            <div className="my-2">
+              <p className="text-sm">เลขครุภัณฑ์</p>
+              <input
+                value={b_eq}
+                className="form-control"
+                name="bike_eq"
+                onChange={(e) => handleChange(e)}
+              />
+            </div>
           </>
         )}
-    
+
         {bikeTypes && (
-<>
-          <div className="my-3">
-          <p className="text-sm">ประเภทจักรยาน</p>
-                  <Select
-                    value={bikeTypes.find(
-                      (option) => option.value === option.value
-                    )}
-                    options={bikeTypes}
-                    onChange={(option) => handleType(option.value)}
-                    defaultValue={bikeTypes[0]}
-                  />
-                </div>
-                <div className="my-3">
-                <p className="text-sm">สาขา</p>
-                  <Select
-                    value={branchId.find(
-                      (option) => option.value === option.value
-                    )}
-                    options={branchId}
-                    onChange={(option) => handleB(option.value)}
-                    defaultValue={branchId[0]}
-                  />
-                </div>
-                </>
-          )}
-          </div>
-      <div className="flex">
-      <div className="col-2 mx-auto">
-        <button value="submit" className="buttonLogin btn-block mr-2" onClick={() => handleSubmit()}>
-          แก้ไขจักรยาน
-        </button>
+          <>
+            <div className="my-3">
+              <p className="text-sm">ประเภทจักรยาน</p>
+              <Select
+                value={bikeTypes.find(
+                  (option) => option.value === option.value
+                )}
+                options={bikeTypes}
+                onChange={(option) => handleType(option.value)}
+                defaultValue={bikeTypes[0]}
+              />
+            </div>
+            <div className="my-3">
+              <p className="text-sm">สาขา</p>
+              <Select
+                value={branchId.find((option) => option.value === option.value)}
+                options={branchId}
+                onChange={(option) => handleB(option.value)}
+                defaultValue={branchId[0]}
+              />
+            </div>
+          </>
+        )}
       </div>
-                <div  className="col-2 mx-auto">
-                <button className="buttonDelete btn-block" onClick={() => setIsOpenConfirm(true)}>
-                    ลบ
-                  </button>
-                </div>
+      <div className="flex">
+        <div className="col-2 mx-auto">
+          <button
+            value="submit"
+            className="buttonLogin btn-block mr-2"
+            onClick={() => handleSubmit()}
+          >
+            แก้ไขจักรยาน
+          </button>
+        </div>
+        <div className="col-2 mx-auto">
+          <button
+            className="buttonDelete btn-block"
+            onClick={() => setIsOpenConfirm(true)}
+          >
+            ลบ
+          </button>
+        </div>
       </div>
     </div>
   );
