@@ -170,7 +170,7 @@ export default function BikeCreate() {
     <div className="flex">
     <div className="col-2 mx-auto">
       <button value="submit" className="buttonLogin btn-block mr-2" onClick={() => handleSubmit()}>
-        แก้ไขจักรยาน
+        สร้างจักรยาน
       </button>
     </div>
               <div  className="col-2 mx-auto">
