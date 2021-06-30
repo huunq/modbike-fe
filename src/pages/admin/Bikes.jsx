@@ -73,7 +73,7 @@ export default function Bikes() {
         columns={columns}
         pageSize={prefixNameRowPerPage}
         onChangeRowsPerPage={setPrefixNameRowPerPage}
-        rowsPerPageOptions={[5, 10, 15, 20]}
+        rowsPerPageOptions={[5, 10, 15, 20, 50, 100]}
       />
     </div>
   );

@@ -49,8 +49,8 @@ export default function BikeEdit(props) {
       bike_pic: data.bike_pic,
     };
 
-    setBID(temp.machine_group_id);
-    setTypeId(temp.machine_type_id);
+    setBID(data.branch_id);
+    setTypeId(data.bike_type_id);
 
     const mt = [];
     _.map(bikeType.data, (data, i) => {
@@ -64,7 +64,7 @@ export default function BikeEdit(props) {
     const mb = [];
 
     _.map(branchs.data, (data, i) => {
-      mt.push({
+      mb.push({
         value: data.branch_id,
         label: data.branch_name,
       });
@@ -199,28 +199,30 @@ export default function BikeEdit(props) {
         )}
 
         {bikeTypes && (
-          <>
-            <div className="my-3">
-              <p className="text-sm">ประเภทจักรยาน</p>
-              <Select
-                value={bikeTypes.find(
-                  (option) => option.value === option.value
-                )}
-                options={bikeTypes}
-                onChange={(option) => handleType(option.value)}
-                defaultValue={bikeTypes[0]}
-              />
-            </div>
-            <div className="my-3">
-              <p className="text-sm">สาขา</p>
-              <Select
-                value={branchId.find((option) => option.value === option.value)}
-                options={branchId}
-                onChange={(option) => handleB(option.value)}
-                defaultValue={branchId[0]}
-              />
-            </div>
-          </>
+         <>
+         <div className="my-3">
+         <p className="text-sm">ประเภทจักรยาน</p>
+                 <Select
+                   value={bikeTypes.find(
+                     (option) => option.value == typeId
+                   )}
+                   options={bikeTypes}
+                   onChange={(option) => setTypeId(option.value)}
+                  // defaultValue={bikeTypes[0]}
+                 />
+               </div>
+               <div className="my-3">
+               <p className="text-sm">สาขา</p>
+                 <Select
+                   value={branchId.find(
+                     (option) => option.value == bID
+                   )}
+                   options={branchId}
+                   onChange={(option) => setBID(option.value)}
+                  // defaultValue={branchId[0]}
+                 />
+               </div>
+               </>
         )}
       </div>
       <div className="flex">

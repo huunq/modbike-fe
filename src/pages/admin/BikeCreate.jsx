@@ -23,8 +23,8 @@ export default function BikeCreate() {
   const [b_detail, setB_detail] =useState("")
   const [b_eq, setB_eq] =useState("")
 
-  const [typeId, setTypeId] = useState();
-  const [bID, setBID] = useState();
+  const [typeId, setTypeId] = useState(1);
+  const [bID, setBID] = useState(1);
 
   const fetchData = useCallback(async () => {
     setIsFetch(true);
@@ -44,7 +44,7 @@ export default function BikeCreate() {
     const mb = [];
 
     _.map(branchs.data, (data, i) => {
-      mt.push({
+      mb.push({
         value: data.branch_id,
         label: data.branch_name,
       });
@@ -146,22 +146,22 @@ export default function BikeCreate() {
           <p className="text-sm">ประเภทจักรยาน</p>
                   <Select
                     value={bikeTypes.find(
-                      (option) => option.value === option.value
+                      (option) => option.value == typeId
                     )}
                     options={bikeTypes}
-                    onChange={(option) => handleType(option.value)}
-                    defaultValue={bikeTypes[0]}
+                    onChange={(option) => setTypeId(option.value)}
+                   // defaultValue={bikeTypes[0]}
                   />
                 </div>
                 <div className="my-3">
                 <p className="text-sm">สาขา</p>
                   <Select
                     value={branchId.find(
-                      (option) => option.value === option.value
+                      (option) => option.value == bID
                     )}
                     options={branchId}
-                    onChange={(option) => handleB(option.value)}
-                    defaultValue={branchId[0]}
+                    onChange={(option) => setBID(option.value)}
+                   // defaultValue={branchId[0]}
                   />
                 </div>
                 </>
